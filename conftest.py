@@ -9,8 +9,9 @@ def driver(request):
 
     if request.param == 'firefox':
         browser = webdriver.Firefox()
+        browser.fullscreen_window()
     elif request.param == 'chrome':
         browser = webdriver.Chrome()
-    browser.get('https://stellarburgers.nomoreparties.site/login')
+        browser.fullscreen_window()
     yield browser
     browser.quit()

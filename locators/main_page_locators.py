@@ -17,3 +17,4 @@ class MainPageLocators:
     BUTTON_REGISTER_ORDER = [By.XPATH, ".//button[text() = 'Оформить заказ']"] # кнопка "оформить заказ"
 
     NUMBER_ORDER_HEAD = [By.XPATH, ".//p[text() = 'идентификатор заказа']"] #заголовок "идентификатор заказа"
+    NUMBER_ORDER = [By.XPATH, "//div[1]/div/h2"] # номер заказа

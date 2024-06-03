@@ -44,3 +44,9 @@ class MainPageBurger(BasePageBurger):
         element = self.driver.find_element(*MainPageLocators.NUMBER_ORDER_HEAD)
         return element
 
+    def close_window_order_succesfull(self):
+        self.driver.find_element(*MainPageLocators.CLOSE_BUTTON).click()
+
+    def find_number_order(self):
+        element = self.driver.find_element(*MainPageLocators.NUMBER_ORDER)
+        return f'0{element.text}'

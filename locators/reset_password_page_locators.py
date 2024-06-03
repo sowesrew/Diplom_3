@@ -8,4 +8,3 @@ class ResetPasswordPageLocators:
     ACTIVE_RECOVER_INPUT = [By.XPATH, ".//label[text()='Пароль']/parent::div[contains(@class, 'input_status_active')]"]
 
 
-

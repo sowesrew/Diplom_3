@@ -12,3 +12,6 @@ class LoginPageBurger(BasePageBurger):
         self.driver.find_element(*LoginPageLocators.INPUT_EMAIL).send_keys('ulyankinasveta7_131@yandex.ru')
         self.driver.find_element(*LoginPageLocators.INPUT_PASSWORD).send_keys('qwerty123')
         self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
+
+    def click_go_to_constructor(self):
+        self.driver.find_element(*LoginPageLocators.P_KONSTRUCTOR).click()

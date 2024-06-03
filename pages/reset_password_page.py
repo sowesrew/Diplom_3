@@ -11,6 +11,6 @@ class ResetPasswordPageBurger(BasePageBurger):
         element.click()
 
     def active_input(self):
-        self.driver.find_element(*ResetPasswordPageLocators.RECOVER_PASSWORD_INPUT).click()
-        active = self.driver.find_element(*ResetPasswordPageLocators.ACTIVE_RECOVER_INPUT)
+        self.driver.find_element(*ResetPasswordPageLocators.EYE_BUTTON).click()
+        active = self.driver.find_element(*ResetPasswordPageLocators.EYE_BUTTON)
         return active

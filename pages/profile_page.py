@@ -6,4 +6,7 @@ from locators.profile_page_locators import ProfilePageLocators
 
 class ProfilePageBurger(BasePageBurger):
     def click_order_history(self):
-        self.driver.find_element(*ProfilePageLocators.BUTTON_ORDER_HISTORY)
+        self.driver.find_element(*ProfilePageLocators.BUTTON_ORDER_HISTORY).click()
+
+    def click_exit(self):
+        self.driver.find_element(*ProfilePageLocators.BUTTON_EXIT).click()

@@ -14,32 +14,39 @@ import time
 
 class TestRecoverPassword:
 
-    @allure.title("Проверка перехода на страницу восстановления пароля")
+    @allure.title("Переход на страницу восстановления пароля по кнопке «Восстановить пароль»")
     def test_go_to_forgot_password(self, driver):
         seach_button_login = LoginPageBurger(driver)
 
         seach_button_login.open_page(DataUrl.LOGIN_URL)
         seach_button_login.click_recover_password()
-        seach_button_login.wait_element(*ForgotPageLocators.RECOVER_PASSWORD_BUTTON)
+
         assert driver.current_url == DataUrl.FORGOT_PASS
 
+    @allure.title("Ввод почты и клик по кнопке «Восстановить»")
+    def test_go_to_reset_password(self, driver):
+        seach_button_login = LoginPageBurger(driver)
+        seach_button_forgot = ForgotPageBurger(driver)
+        seach_button_reset = ResetPasswordPageBurger(driver)
 
-    @allure.title("Проверка клика на значок глаза")
+        seach_button_login.open_page(DataUrl.LOGIN_URL)
+        seach_button_login.click_recover_password()
+        seach_button_forgot.entering_password_recovery_email()
+        seach_button_reset.wait_element(ResetPasswordPageLocators.EYE_BUTTON)
+
+        assert driver.current_url == DataUrl.RESET_PASS
+
+    @allure.title("Клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его.")
     def test_click_eye_button(self, driver):
         seach_button_login = LoginPageBurger(driver)
         seach_button_forgot = ForgotPageBurger(driver)
         seach_button_reset = ResetPasswordPageBurger(driver)
 
+        seach_button_login.open_page(DataUrl.LOGIN_URL)
         seach_button_login.click_recover_password()
         seach_button_forgot.entering_password_recovery_email()
-        seach_button_base = BasePageBurger(driver)
-        seach_button_base.wait_element(ResetPasswordPageLocators.EYE_BUTTON)
-        not_activ = seach_button_reset.not_active_input()
+        seach_button_reset.wait_element(ResetPasswordPageLocators.EYE_BUTTON)
         seach_button_reset.click_eye_button()
-        activ = seach_button_reset.active_input()
-        is_hl = seach_button_reset.is_highlighted_input()
-        print(activ)
-        print(not_activ)
-        print(is_hl)
-        assert (expected_conditions.visibility_of_element_located(activ)
-                and expected_conditions.visibility_of_element_located(is_hl))
+        active = seach_button_reset.active_input()
+
+        assert active.is_displayed() == True

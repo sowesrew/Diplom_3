@@ -12,7 +12,7 @@ class MainPageBurger(BasePageBurger):
             element.click()
 
     def click_feed_order(self):
-        element = self.driver.find_element(*MainPageLocators.ORDER_FEED)
+        element = self.driver.find_element(*MainPageLocators.ORDER_FEED_2)
         if self.driver.name == 'firefox':
             self.driver.execute_script("arguments[0].click();", element)
         else:

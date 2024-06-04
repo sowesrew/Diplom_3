@@ -22,8 +22,8 @@ class FeedPageBurger(BasePageBurger):
             order_list.append(i.text)
         return order_list
 
-    def find_all_counter(self):
-        elements = self.driver.find_element(*FeedPageLocators.COUNTER_ALL_ORDERS)
+    def find_all_and_today_counter(self, locator):
+        elements = self.driver.find_element(*locator)
         return elements.text
 
     def click_constructor(self):
@@ -32,10 +32,6 @@ class FeedPageBurger(BasePageBurger):
             self.driver.execute_script("arguments[0].click();", element)
         else:
             element.click()
-
-    def find_today_counter(self):
-        elements = self.driver.find_element(*FeedPageLocators.COUNTER_TODAY_ORDERS)
-        return elements.text
 
     def find_order_in_work(self):
         elements = self.driver.find_element(*FeedPageLocators.ORDER_IN_WORK)

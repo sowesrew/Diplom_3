@@ -7,7 +7,7 @@ from pages.profile_page import ProfilePageBurger
 from locators.feed_page_locators import FeedPageLocators
 from conftest import driver
 import allure
-import time
+import pytest
 from data import DataUrl
 
 
@@ -46,43 +46,32 @@ class TestOrderFeed:
 
         assert number_order_main in number_order_feed
 
-    @allure.title("При создании нового заказа счётчик Выполнено за всё время увеличивается")
-    def test_counter_all_up(self, driver):
+    @allure.title("При создании нового заказа счётчик Выполнено за всё время/ Выполнено за сегодня увеличивается")
+    @pytest.mark.parametrize(
+        'locator',
+        [
+            FeedPageLocators.COUNTER_ALL_ORDERS,
+            FeedPageLocators.COUNTER_TODAY_ORDERS
+        ]
+    )
+    def test_counter_all_up_and_today(self, locator, driver):
         login = LoginPageBurger(driver)
         main = MainPageBurger(driver)
         feed = FeedPageBurger(driver)
 
         login.open_page(DataUrl.LOGIN_URL)
         login.login_user()
+        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
         main.click_feed_order()
-        first_count = feed.find_all_counter()
+        feed.wait_element_and_clickable(FeedPageLocators.LIST_ORDER)
+        first_count = feed.find_all_and_today_counter(locator)
         feed.click_constructor()
-        main.drag_and_drop_bun()
-        main.click_register_order()
-        main.close_window_order_succesfull()
+        main.create_order()
         main.click_feed_order()
-        last_count = feed.find_all_counter()
+        feed.wait_element_and_clickable(FeedPageLocators.LIST_ORDER)
+        last_count = feed.find_all_and_today_counter(locator)
 
-        assert last_count>first_count
-
-    @allure.title("При создании нового заказа счётчик Выполнено за сегодня увеличивается")
-    def test_counter_all_up(self, driver):
-        login = LoginPageBurger(driver)
-        main = MainPageBurger(driver)
-        feed = FeedPageBurger(driver)
-
-        login.open_page(DataUrl.LOGIN_URL)
-        login.login_user()
-        main.click_feed_order()
-        first_count = feed.find_today_counter()
-        feed.click_constructor()
-        main.drag_and_drop_bun()
-        main.click_register_order()
-        main.close_window_order_succesfull()
-        main.click_feed_order()
-        last_count = feed.find_today_counter()
-
-        assert last_count>first_count
+        assert last_count > first_count
 
     @allure.title("После оформления заказа его номер появляется в разделе В работе.")
     def test_order_in_work(self, driver):
@@ -92,8 +81,11 @@ class TestOrderFeed:
 
         login.open_page(DataUrl.LOGIN_URL)
         login.login_user()
+        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
         main.drag_and_drop_bun()
         main.click_register_order()
+        main.wait_visibility_element(MainPageLocators.IMG_LOADING)
+        main.wait_invisibility(MainPageLocators.IMG_LOADING)
         number_order = main.find_number_order()
         main.close_window_order_succesfull()
         main.click_feed_order()

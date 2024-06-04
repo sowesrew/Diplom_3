@@ -28,3 +28,6 @@ class BasePageBurger:
 
     def wait_text(self, locator):
         WebDriverWait(self.driver, 5).until(expected_conditions.text_to_be_present_in_element(locator, '1976'))
+
+    def wait_invisibility(self, locator):
+        WebDriverWait(self.driver, 10).until(expected_conditions.invisibility_of_element_located(locator))

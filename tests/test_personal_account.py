@@ -6,6 +6,7 @@ import allure
 from data import DataUrl
 from locators.main_page_locators import MainPageLocators
 from locators.profile_page_locators import ProfilePageLocators
+from locators.login_page_locators import LoginPageLocators
 
 
 class TestPersonalAccount:
@@ -41,8 +42,8 @@ class TestPersonalAccount:
         login = LoginPageBurger(driver)
         profile = ProfilePageBurger(driver)
 
-        main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
-        main.click_personal_account()
+        main.open_page_and_wait(DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
+        #main.click_personal_account()
         login.login_user()
         login.wait_element_and_clickable(MainPageLocators.BUTTON_PROFILE)
         main.click_personal_account()

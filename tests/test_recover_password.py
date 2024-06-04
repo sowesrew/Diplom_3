@@ -1,5 +1,4 @@
-import time
-
+from locators.login_page_locators import LoginPageLocators
 from pages.login_page import LoginPageBurger
 from pages.forgot_page import ForgotPageBurger
 from pages.reset_password_page import ResetPasswordPageBurger
@@ -27,10 +26,11 @@ class TestRecoverPassword:
         forgot = ForgotPageBurger(driver)
         reset = ResetPasswordPageBurger(driver)
 
-        login.open_page(DataUrl.LOGIN_URL)
+        login.open_page_and_wait(DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
         login.click_recover_password()
+        login.wait_element_and_clickable(ForgotPageLocators.RECOVER_PASSWORD_BUTTON)
         forgot.entering_password_recovery_email()
-        reset.wait_element(ResetPasswordPageLocators.EYE_BUTTON)
+        reset.wait_element_and_clickable(ResetPasswordPageLocators.EYE_BUTTON)
 
         assert driver.current_url == DataUrl.RESET_PASS
 
@@ -42,9 +42,9 @@ class TestRecoverPassword:
 
         login.open_page(DataUrl.LOGIN_URL)
         login.click_recover_password()
-        forgot.wait_element(ForgotPageLocators.RECOVER_PASSWORD_BUTTON)
+        forgot.wait_element_and_clickable(ForgotPageLocators.RECOVER_PASSWORD_BUTTON)
         forgot.entering_password_recovery_email()
-        reset.wait_element(ResetPasswordPageLocators.EYE_BUTTON)
+        reset.wait_element_and_clickable(ResetPasswordPageLocators.EYE_BUTTON)
         reset.click_eye_button()
         active = reset.active_input()
 

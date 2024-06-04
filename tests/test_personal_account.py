@@ -1,5 +1,3 @@
-import time
-
 from pages.login_page import LoginPageBurger
 from pages.main_page import MainPageBurger
 from pages.profile_page import ProfilePageBurger
@@ -7,6 +5,7 @@ from conftest import driver
 import allure
 from data import DataUrl
 from locators.main_page_locators import MainPageLocators
+from locators.profile_page_locators import ProfilePageLocators
 
 
 class TestPersonalAccount:
@@ -15,7 +14,7 @@ class TestPersonalAccount:
     def test_go_to_personal_account(self, driver):
         main = MainPageBurger(driver)
 
-        main.open_page(DataUrl.BASE_URL)
+        main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
         main.click_personal_account()
 
         assert driver.current_url == DataUrl.LOGIN_URL
@@ -26,11 +25,12 @@ class TestPersonalAccount:
         login = LoginPageBurger(driver)
         profile = ProfilePageBurger(driver)
 
-        main.open_page(DataUrl.BASE_URL)
+        main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
         main.click_personal_account()
         login.login_user()
-        login.wait_element(MainPageLocators.ELEMENT_BUN)
+        login.wait_element_and_clickable(MainPageLocators.BUTTON_PROFILE)
         main.click_personal_account()
+        main.wait_element_and_clickable(ProfilePageLocators.BUTTON_ORDER_HISTORY)
         profile.click_order_history()
 
         assert driver.current_url == DataUrl.ORDER_HISTORY
@@ -41,11 +41,12 @@ class TestPersonalAccount:
         login = LoginPageBurger(driver)
         profile = ProfilePageBurger(driver)
 
-        main.open_page(DataUrl.BASE_URL)
+        main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
         main.click_personal_account()
         login.login_user()
-        login.wait_element(MainPageLocators.ELEMENT_BUN)
+        login.wait_element_and_clickable(MainPageLocators.BUTTON_PROFILE)
         main.click_personal_account()
-        profile.click_exit()
+        main.wait_element_and_clickable(ProfilePageLocators.BUTTON_EXIT)
+        profile.click_exit(DataUrl.LOGIN_URL)
 
         assert driver.current_url == DataUrl.LOGIN_URL

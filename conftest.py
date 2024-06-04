@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from data import DataUrl
 
 
 @pytest.fixture(params=['firefox', 'chrome'])
@@ -12,6 +11,6 @@ def driver(request):
         browser.fullscreen_window()
     elif request.param == 'chrome':
         browser = webdriver.Chrome()
-        browser.fullscreen_window()
+        browser.set_window_size(1920, 1080)
     yield browser
     browser.quit()

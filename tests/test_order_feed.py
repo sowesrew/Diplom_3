@@ -1,5 +1,5 @@
-import time
-
+from locators.main_page_locators import MainPageLocators
+from locators.profile_page_locators import ProfilePageLocators
 from pages.login_page import LoginPageBurger
 from pages.main_page import MainPageBurger
 from pages.feed_page import FeedPageBurger
@@ -7,6 +7,7 @@ from pages.profile_page import ProfilePageBurger
 from locators.feed_page_locators import FeedPageLocators
 from conftest import driver
 import allure
+import time
 from data import DataUrl
 
 
@@ -16,11 +17,12 @@ class TestOrderFeed:
     def test_details_order(self, driver):
         feed = FeedPageBurger(driver)
 
-        feed.open_page(DataUrl.FEED)
+        feed.open_page_and_wait(DataUrl.FEED, FeedPageLocators.COUNTER_ALL_ORDERS)
         feed.click_order()
+        feed.wait_element_and_clickable(FeedPageLocators.HEAD_STRUCTURE)
         structure = feed.window_order()
 
-        assert structure.is_displayed() == True
+        assert structure.is_displayed() is True
 
     @allure.title("Заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»")
     def test_order_user_in_feed_order(self, driver):
@@ -31,13 +33,15 @@ class TestOrderFeed:
 
         login.open_page(DataUrl.LOGIN_URL)
         login.login_user()
-        main.drag_and_drop_bun()
-        main.click_register_order()
-        main.close_window_order_succesfull()
+        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
+        main.create_order()
         main.click_personal_account()
+        profile.wait_to_be(DataUrl.PROFILE)
         profile.click_order_history()
-        number_order_main = profile.find_number_order().text
+        profile.wait_visibility_element(ProfilePageLocators.NUMBER_ORDER)
+        number_order_main = profile.find_number_order()
         main.click_feed_order()
+        profile.wait_visibility_element(FeedPageLocators.COUNTER_ALL_ORDERS)
         number_order_feed = feed.find_number_order()
 
         assert number_order_main in number_order_feed

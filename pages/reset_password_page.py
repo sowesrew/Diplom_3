@@ -1,4 +1,3 @@
-import allure
 from pages.base_page import BasePageBurger
 from locators.reset_password_page_locators import ResetPasswordPageLocators
 

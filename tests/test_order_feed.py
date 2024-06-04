@@ -5,7 +5,7 @@ from pages.main_page import MainPageBurger
 from pages.feed_page import FeedPageBurger
 from pages.profile_page import ProfilePageBurger
 from locators.feed_page_locators import FeedPageLocators
-from conftest import driver
+#from conftest import driver
 import allure
 import pytest
 from data import DataUrl
@@ -33,7 +33,7 @@ class TestOrderFeed:
 
         login.open_page(DataUrl.LOGIN_URL)
         login.login_user()
-        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
+        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_SAUSE)
         main.create_order()
         main.click_personal_account()
         profile.wait_to_be(DataUrl.PROFILE)

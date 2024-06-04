@@ -1,7 +1,7 @@
 from pages.login_page import LoginPageBurger
 from pages.main_page import MainPageBurger
 from pages.profile_page import ProfilePageBurger
-from conftest import driver
+#from conftest import driver
 import allure
 from data import DataUrl
 from locators.main_page_locators import MainPageLocators
@@ -29,7 +29,7 @@ class TestPersonalAccount:
         main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
         main.click_personal_account()
         login.login_user()
-        login.wait_element_and_clickable(MainPageLocators.BUTTON_PROFILE)
+        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_SAUSE)
         main.click_personal_account()
         main.wait_element_and_clickable(ProfilePageLocators.BUTTON_ORDER_HISTORY)
         profile.click_order_history()
@@ -43,9 +43,8 @@ class TestPersonalAccount:
         profile = ProfilePageBurger(driver)
 
         main.open_page_and_wait(DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
-        #main.click_personal_account()
         login.login_user()
-        login.wait_element_and_clickable(MainPageLocators.BUTTON_PROFILE)
+        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_SAUSE)
         main.click_personal_account()
         main.wait_element_and_clickable(ProfilePageLocators.BUTTON_EXIT)
         profile.click_exit(DataUrl.LOGIN_URL)

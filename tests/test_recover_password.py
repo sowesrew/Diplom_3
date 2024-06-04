@@ -2,7 +2,7 @@ from locators.login_page_locators import LoginPageLocators
 from pages.login_page import LoginPageBurger
 from pages.forgot_page import ForgotPageBurger
 from pages.reset_password_page import ResetPasswordPageBurger
-from conftest import driver
+#from conftest import driver
 import allure
 from data import DataUrl
 from locators.reset_password_page_locators import ResetPasswordPageLocators

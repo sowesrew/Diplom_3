@@ -1,6 +1,4 @@
-import allure
 from pages.base_page import BasePageBurger
-from locators.main_page_locators import MainPageLocators
 from locators.profile_page_locators import ProfilePageLocators
 
 

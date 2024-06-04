@@ -1,5 +1,3 @@
-import time
-
 from locators.login_page_locators import LoginPageLocators
 from locators.main_page_locators import MainPageLocators
 from pages.login_page import LoginPageBurger

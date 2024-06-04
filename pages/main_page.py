@@ -80,5 +80,5 @@ class MainPageBurger(BasePageBurger):
     def create_order(self):
         self.drag_and_drop_bun()
         self.click_register_order()
-        self.wait_visibility_element(MainPageLocators.CLOSE_BUTTON_ORDER)
+        self.wait_element_and_clickable(MainPageLocators.CLOSE_BUTTON_ORDER)
         self.close_window_order_succesfull()

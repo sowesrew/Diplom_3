@@ -18,7 +18,7 @@ class MainPageLocators:
     COUNTER_INGREDIENT_NULL = [By.XPATH, ".//ul[2]/a[1]//p[@class = 'counter_counter__num__3nue1'][text() = '0']"] # нулевой каунтер третьего ингредиента
     INGREDIENT_BUN = [By.XPATH, "//img[@alt = 'Флюоресцентная булка R2-D3']"] # Булка :3
     COUNTER_INGREDIENT = [By.XPATH, ".//ul[2]/a[1]//p[@class = 'counter_counter__num__3nue1'][text() = '1']"] # ненулевой каунтер
-    INGREDIENT_SAUSE = [By.XPATH, ".//img[@alt = 'Соус Spicy-X']"]
+    INGREDIENT_SAUSE = [By.XPATH, ".//img[@alt = 'Соус Spicy-X']"] # ингредиент - соус
     BUN_CONSTRUCTOR = [By.XPATH, ".//span[text() = 'Перетяните булочку сюда (верх)']"] # конструктор булочки
     BUTTON_REGISTER_ORDER = [By.XPATH, ".//button[text() = 'Оформить заказ']"] # кнопка "оформить заказ"
 
@@ -28,4 +28,4 @@ class MainPageLocators:
 
     IMG_INGREDIENT = [By.XPATH, "//section[1]/div[1]/div/div[contains(@class , 'undefined')]"]
     PRICE_INGREDIENT = [By.XPATH, "//div/div/p[text() = '0']"]
-    PRICE_INGREDIENT_2 = [By.CSS_SELECTOR, ".text_type_digits-medium"]
+    PRICE_INGREDIENT_2 = [By.CSS_SELECTOR, ".text_type_digits-medium"] # локатор цены ингредиента

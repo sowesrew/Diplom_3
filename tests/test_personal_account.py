@@ -1,7 +1,7 @@
 from pages.login_page import LoginPageBurger
 from pages.main_page import MainPageBurger
 from pages.profile_page import ProfilePageBurger
-#from conftest import driver
+from conftest import driver
 import allure
 from data import DataUrl
 from locators.main_page_locators import MainPageLocators

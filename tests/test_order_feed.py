@@ -5,7 +5,7 @@ from pages.main_page import MainPageBurger
 from pages.feed_page import FeedPageBurger
 from pages.profile_page import ProfilePageBurger
 from locators.feed_page_locators import FeedPageLocators
-#from conftest import driver
+from conftest import driver
 import allure
 import pytest
 from data import DataUrl

@@ -19,7 +19,7 @@ class MainPageBurger(BasePageBurger):
             element.click()
 
     def click_ingredient(self):
-        element = self.driver.find_element(*MainPageLocators.COUNTER_INGREDIENT_NULL)
+        element = self.driver.find_element(*MainPageLocators.INGREDIENT_SAUSE)
         if self.driver.name == 'firefox':
             self.driver.execute_script("arguments[0].click();", element)
         else:

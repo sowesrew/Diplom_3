@@ -3,9 +3,10 @@ from locators.feed_page_locators import FeedPageLocators
 
 
 class FeedPageBurger(BasePageBurger):
-    def click_order(self):
+    def click_order_and_wait(self):
         element = self.driver.find_element(*FeedPageLocators.LIST_ORDER)
-        self.driver_setup(element)
+        self.click_element(element)
+        self.wait_element_and_clickable(FeedPageLocators.HEAD_STRUCTURE)
 
     def window_order(self):
         element = self.driver.find_element(*FeedPageLocators.WINDOW_ORDER)
@@ -24,7 +25,7 @@ class FeedPageBurger(BasePageBurger):
 
     def click_constructor(self):
         element = self.driver.find_element(*FeedPageLocators.P_KONSTRUCTOR)
-        self.driver_setup(element)
+        self.click_element(element)
 
     def find_order_in_work(self):
         elements = self.driver.find_element(*FeedPageLocators.ORDER_IN_WORK)

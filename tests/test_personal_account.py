@@ -14,7 +14,7 @@ class TestPersonalAccount:
     @allure.title("Переход по клику на «Личный кабинет»")
     def test_go_to_personal_account(self, driver):
         main = MainPageBurger(driver)
-        main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
+        main.open_page_and_wait_visibility(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
         main.click_personal_account()
         assert driver.current_url == DataUrl.BASE_URL + DataUrl.LOGIN_URL
 
@@ -23,13 +23,11 @@ class TestPersonalAccount:
         main = MainPageBurger(driver)
         login = LoginPageBurger(driver)
         profile = ProfilePageBurger(driver)
-        main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
+        main.open_page_and_wait_visibility(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
         main.click_personal_account()
-        login.login_user()
-        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_SAUSE)
-        main.click_personal_account()
-        main.wait_element_and_clickable(ProfilePageLocators.BUTTON_ORDER_HISTORY)
-        profile.click_order_history()
+        login.login_user_and_wait_element_clickable()
+        main.click_personal_account_and_wait_clickable(ProfilePageLocators.BUTTON_ORDER_HISTORY)
+        profile.click_order_history_and_wait()
         assert driver.current_url == DataUrl.BASE_URL + DataUrl.ORDER_HISTORY
 
     @allure.title("Выход из аккаунта")
@@ -37,10 +35,8 @@ class TestPersonalAccount:
         main = MainPageBurger(driver)
         login = LoginPageBurger(driver)
         profile = ProfilePageBurger(driver)
-        main.open_page_and_wait(DataUrl.BASE_URL + DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
-        login.login_user()
-        login.wait_element_and_clickable(MainPageLocators.INGREDIENT_SAUSE)
-        main.click_personal_account()
-        main.wait_element_and_clickable(ProfilePageLocators.BUTTON_EXIT)
+        main.open_page_and_wait_visibility(DataUrl.BASE_URL + DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
+        login.login_user_and_wait_element_clickable()
+        main.click_personal_account_and_wait_clickable(ProfilePageLocators.BUTTON_EXIT)
         profile.click_exit(DataUrl.BASE_URL + DataUrl.LOGIN_URL)
         assert driver.current_url == DataUrl.BASE_URL + DataUrl.LOGIN_URL

@@ -9,4 +9,6 @@ class DataUrl:
     FEED = '/feed'
 
 
-
+class DataAuthorization:
+    LOGIN = 'ulyankinasveta7_131@yandex.ru'
+    PASS = 'qwerty123'

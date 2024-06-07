@@ -1,5 +1,6 @@
 from pages.base_page import BasePageBurger
 from locators.login_page_locators import LoginPageLocators
+from data import DataAuthorization
 
 
 class LoginPageBurger(BasePageBurger):
@@ -9,8 +10,8 @@ class LoginPageBurger(BasePageBurger):
         self.driver_setup(element)
 
     def login_user(self):
-        self.driver.find_element(*LoginPageLocators.INPUT_EMAIL).send_keys('ulyankinasveta7_131@yandex.ru')
-        self.driver.find_element(*LoginPageLocators.INPUT_PASSWORD).send_keys('qwerty123')
+        self.driver.find_element(*LoginPageLocators.INPUT_EMAIL).send_keys(DataAuthorization.LOGIN)
+        self.driver.find_element(*LoginPageLocators.INPUT_PASSWORD).send_keys(DataAuthorization.PASS)
         element = self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON)
         self.driver_setup(element)
 

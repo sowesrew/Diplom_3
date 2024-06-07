@@ -59,7 +59,7 @@ class TestMainFunctionality:
         login.login_user()
         login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
         main.drag_and_drop_bun()
-        main.wait_text(MainPageLocators.PRICE_INGREDIENT_2)
+        main.wait_text(MainPageLocators.PRICE_INGREDIENT)
         main.click_register_order()
         main.wait_visibility_element(MainPageLocators.NUMBER_ORDER_HEAD)
         popup = main.order_is_made()

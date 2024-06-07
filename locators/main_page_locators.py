@@ -27,5 +27,4 @@ class MainPageLocators:
     NUMBER_ORDER = [By.XPATH, ".//div/h2[contains(@class, 'Modal_modal__title__2L34m')]"] # номер заказа
 
     IMG_INGREDIENT = [By.XPATH, "//section[1]/div[1]/div/div[contains(@class , 'undefined')]"]
-    PRICE_INGREDIENT = [By.XPATH, "//div/div/p[text() = '0']"]
-    PRICE_INGREDIENT_2 = [By.CSS_SELECTOR, ".text_type_digits-medium"] # локатор цены ингредиента
+    PRICE_INGREDIENT = [By.CSS_SELECTOR, ".text_type_digits-medium"] # локатор цены ингредиента

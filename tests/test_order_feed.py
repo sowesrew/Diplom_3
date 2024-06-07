@@ -16,12 +16,10 @@ class TestOrderFeed:
     @allure.title("Eсли кликнуть на заказ, откроется всплывающее окно с деталями")
     def test_details_order(self, driver):
         feed = FeedPageBurger(driver)
-
         feed.open_page_and_wait(DataUrl.FEED, FeedPageLocators.COUNTER_ALL_ORDERS)
         feed.click_order()
         feed.wait_element_and_clickable(FeedPageLocators.HEAD_STRUCTURE)
         structure = feed.window_order()
-
         assert structure.is_displayed() is True
 
     @allure.title("Заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»")
@@ -30,7 +28,6 @@ class TestOrderFeed:
         main = MainPageBurger(driver)
         feed = FeedPageBurger(driver)
         profile = ProfilePageBurger(driver)
-
         login.open_page(DataUrl.LOGIN_URL)
         login.login_user()
         login.wait_element_and_clickable(MainPageLocators.INGREDIENT_SAUSE)
@@ -43,7 +40,6 @@ class TestOrderFeed:
         main.click_feed_order()
         profile.wait_visibility_element(FeedPageLocators.COUNTER_ALL_ORDERS)
         number_order_feed = feed.find_number_order()
-
         assert number_order_main in number_order_feed
 
     @allure.title("При создании нового заказа счётчик Выполнено за всё время/ Выполнено за сегодня увеличивается")
@@ -58,7 +54,6 @@ class TestOrderFeed:
         login = LoginPageBurger(driver)
         main = MainPageBurger(driver)
         feed = FeedPageBurger(driver)
-
         login.open_page(DataUrl.LOGIN_URL)
         login.login_user()
         login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
@@ -70,7 +65,6 @@ class TestOrderFeed:
         main.click_feed_order()
         feed.wait_element_and_clickable(FeedPageLocators.LIST_ORDER)
         last_count = feed.find_all_and_today_counter(locator)
-
         assert last_count > first_count
 
     @allure.title("После оформления заказа его номер появляется в разделе В работе.")
@@ -78,7 +72,6 @@ class TestOrderFeed:
         login = LoginPageBurger(driver)
         main = MainPageBurger(driver)
         feed = FeedPageBurger(driver)
-
         login.open_page(DataUrl.LOGIN_URL)
         login.login_user()
         login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
@@ -91,7 +84,6 @@ class TestOrderFeed:
         main.click_feed_order()
         feed.wait_displayed_element(FeedPageLocators.ORDER_IN_WORK)
         number_order_feed = feed.find_order_in_work()
-
         assert number_order == number_order_feed
 
 

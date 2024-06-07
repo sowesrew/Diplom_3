@@ -12,16 +12,16 @@ class TestMainFunctionality:
     @allure.title("Переход по клику на «Конструктор»")
     def test_go_to_constructor(self, driver):
         login = LoginPageBurger(driver)
-        login.open_page_and_wait(DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
+        login.open_page_and_wait(DataUrl.BASE_URL + DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
         login.click_go_to_constructor()
-        assert driver.current_url == DataUrl.CONSTRUCTOR
+        assert driver.current_url == DataUrl.BASE_URL + DataUrl.CONSTRUCTOR
 
     @allure.title("Переход по клику на «Лента заказов»")
     def test_go_to_feed_order(self, driver):
         main = MainPageBurger(driver)
         main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.INGREDIENT_BUN)
         main.click_feed_order()
-        assert driver.current_url == DataUrl.FEED
+        assert driver.current_url == DataUrl.BASE_URL + DataUrl.FEED
 
     @allure.title("Если кликнуть на ингредиент, появится всплывающее окно с деталями")
     def test_open_ingredient(self, driver):
@@ -55,7 +55,7 @@ class TestMainFunctionality:
     def test_user_login_register_order(self, driver):
         main = MainPageBurger(driver)
         login = LoginPageBurger(driver)
-        login.open_page_and_wait(DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
+        login.open_page_and_wait(DataUrl.BASE_URL + DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
         login.login_user()
         login.wait_element_and_clickable(MainPageLocators.INGREDIENT_BUN)
         main.drag_and_drop_bun()

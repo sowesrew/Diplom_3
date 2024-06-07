@@ -16,7 +16,7 @@ class TestPersonalAccount:
         main = MainPageBurger(driver)
         main.open_page_and_wait(DataUrl.BASE_URL, MainPageLocators.ELEMENT_BUN)
         main.click_personal_account()
-        assert driver.current_url == DataUrl.LOGIN_URL
+        assert driver.current_url == DataUrl.BASE_URL + DataUrl.LOGIN_URL
 
     @allure.title("Переход в раздел «История заказов»")
     def test_go_to_order_history(self, driver):
@@ -30,17 +30,17 @@ class TestPersonalAccount:
         main.click_personal_account()
         main.wait_element_and_clickable(ProfilePageLocators.BUTTON_ORDER_HISTORY)
         profile.click_order_history()
-        assert driver.current_url == DataUrl.ORDER_HISTORY
+        assert driver.current_url == DataUrl.BASE_URL + DataUrl.ORDER_HISTORY
 
     @allure.title("Выход из аккаунта")
     def test_go_to_exit(self, driver):
         main = MainPageBurger(driver)
         login = LoginPageBurger(driver)
         profile = ProfilePageBurger(driver)
-        main.open_page_and_wait(DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
+        main.open_page_and_wait(DataUrl.BASE_URL + DataUrl.LOGIN_URL, LoginPageLocators.LOGIN_BUTTON)
         login.login_user()
         login.wait_element_and_clickable(MainPageLocators.INGREDIENT_SAUSE)
         main.click_personal_account()
         main.wait_element_and_clickable(ProfilePageLocators.BUTTON_EXIT)
-        profile.click_exit(DataUrl.LOGIN_URL)
-        assert driver.current_url == DataUrl.LOGIN_URL
+        profile.click_exit(DataUrl.BASE_URL + DataUrl.LOGIN_URL)
+        assert driver.current_url == DataUrl.BASE_URL + DataUrl.LOGIN_URL

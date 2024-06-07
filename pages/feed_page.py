@@ -5,10 +5,7 @@ from locators.feed_page_locators import FeedPageLocators
 class FeedPageBurger(BasePageBurger):
     def click_order(self):
         element = self.driver.find_element(*FeedPageLocators.LIST_ORDER)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def window_order(self):
         element = self.driver.find_element(*FeedPageLocators.WINDOW_ORDER)
@@ -27,10 +24,7 @@ class FeedPageBurger(BasePageBurger):
 
     def click_constructor(self):
         element = self.driver.find_element(*FeedPageLocators.P_KONSTRUCTOR)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def find_order_in_work(self):
         elements = self.driver.find_element(*FeedPageLocators.ORDER_IN_WORK)

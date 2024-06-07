@@ -9,10 +9,7 @@ class ForgotPageBurger(BasePageBurger):
 
     def click_button_forgot(self):
         element = self.driver.find_element(*ForgotPageLocators.RECOVER_PASSWORD_BUTTON)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     # шаг восстановления пароля
     def entering_password_recovery_email(self):

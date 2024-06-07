@@ -6,24 +6,15 @@ from seletools.actions import drag_and_drop
 class MainPageBurger(BasePageBurger):
     def click_personal_account(self):
         element = self.driver.find_element(*MainPageLocators.BUTTON_PROFILE)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def click_feed_order(self):
         element = self.driver.find_element(*MainPageLocators.ORDER_FEED_2)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def click_ingredient(self):
         element = self.driver.find_element(*MainPageLocators.INGREDIENT_SAUSE)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def open_window_ingredient(self):
         element = self.driver.find_element(*MainPageLocators.IMG_INGREDIENT)
@@ -35,10 +26,7 @@ class MainPageBurger(BasePageBurger):
 
     def close_window_ingredient(self):
         element = self.driver.find_element(*MainPageLocators.CLOSE_BUTTON)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def drag_and_drop_souse(self):
         souse = self.driver.find_element(*MainPageLocators.INGREDIENT_SAUSE)
@@ -51,10 +39,7 @@ class MainPageBurger(BasePageBurger):
 
     def click_register_order(self):
         element = self.driver.find_element(*MainPageLocators.BUTTON_REGISTER_ORDER)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def drag_and_drop_bun(self):
         bun = self.driver.find_element(*MainPageLocators.INGREDIENT_BUN)
@@ -67,10 +52,7 @@ class MainPageBurger(BasePageBurger):
 
     def close_window_order_succesfull(self):
         element = self.driver.find_element(*MainPageLocators.CLOSE_BUTTON_ORDER)
-        if self.driver.name == 'firefox':
-            self.driver.execute_script("arguments[0].click();", element)
-        else:
-            element.click()
+        self.driver_setup(element)
 
     def find_number_order(self):
         element = self.driver.find_element(*MainPageLocators.NUMBER_ORDER)

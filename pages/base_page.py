@@ -9,6 +9,12 @@ class BasePageBurger:
     def open_page(self, url):
         self.driver.get(url)
 
+    def driver_setup(self, element):
+        if self.driver.name == 'firefox':
+            self.driver.execute_script("arguments[0].click();", element)
+        else:
+            element.click()
+
     def open_page_and_wait(self, url, locator):
         self.driver.get(url)
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator))

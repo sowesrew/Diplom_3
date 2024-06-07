@@ -24,7 +24,7 @@ class MainPageLocators:
 
     NUMBER_ORDER_HEAD = [By.XPATH, ".//p[text() = 'идентификатор заказа']"] #заголовок "идентификатор заказа"
     NUMBER_ORDER_WINDOW = [By.CSS_SELECTOR, ".Modal_modal__container__Wo2l_"] #окно "заказ"
-    NUMBER_ORDER = [By.XPATH, "//div[1]/div/h2"] # номер заказа
+    NUMBER_ORDER = [By.XPATH, ".//div/h2[contains(@class, 'Modal_modal__title__2L34m')]"] # номер заказа
 
     IMG_INGREDIENT = [By.XPATH, "//section[1]/div[1]/div/div[contains(@class , 'undefined')]"]
     PRICE_INGREDIENT = [By.XPATH, "//div/div/p[text() = '0']"]
